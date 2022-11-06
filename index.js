@@ -20,12 +20,16 @@ app.use("/games", gamesRoute);
 
 // * Routes
 
+app.get("/", (req, res) => {
+  res.send("We are on home");
+});
+
 // * Connect to MongoDB
 
-mangoose.connect(process.env.DB_CONNECTION, () => {
-  console.log("Connected to MongoDB");
-  console.log(process.env.DB_CONNECTION);
-});
+// mangoose.connect(process.env.DB_CONNECTION, () => {
+//   console.log("Connected to MongoDB");
+//   console.log(process.env.DB_CONNECTION);
+// });
 
 // const client = new MongoClient(process.env.DB_CONNECTION, {
 //   useNewUrlParser: true,
@@ -41,5 +45,5 @@ mangoose.connect(process.env.DB_CONNECTION, () => {
 // * Server
 
 app.listen(PORT, () => {
-  console.log(`Server running on localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

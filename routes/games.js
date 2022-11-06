@@ -1,9 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const Game = require("../models/Game");
+const qs = require("qs");
+const axios = require("axios");
+const apiUrl = "https://api.rawg.io/api/games";
 
 router.get("/", (req, res) => {
   res.send("We are on games");
+});
+
+router.get("/popular", (req, res) => {
+  let query = req.query;
+  let queryString = qs.stringify(query);
+  axios
+    .get(`${apiUrl}?${queryString}&key=${process.env.RAWG_API_KEY}`)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.post("/", (req, res) => {
