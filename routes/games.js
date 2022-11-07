@@ -12,8 +12,22 @@ router.get("/", (req, res) => {
 router.get("/popular", (req, res) => {
   let query = req.query;
   let queryString = qs.stringify(query);
+  console.log(queryString);
   axios
     .get(`${apiUrl}?${queryString}&key=${process.env.RAWG_API_KEY}`)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      console.log(queryString);
+    });
+});
+
+router.get("/popular/:id", (req, res) => {
+  let id = req.params.id;
+  axios
+    .get(`${apiUrl}/${id}?key=${process.env.RAWG_API_KEY}`)
     .then((response) => {
       res.send(response.data);
     })
