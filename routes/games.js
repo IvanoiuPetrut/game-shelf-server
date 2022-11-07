@@ -48,6 +48,18 @@ router.get("/popular/:id/screenshots", (req, res) => {
     });
 });
 
+router.get("/popular/:id/movies", (req, res) => {
+  let id = req.params.id;
+  axios
+    .get(`${apiUrl}/${id}/movies?key=${process.env.RAWG_API_KEY}`)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.post("/", (req, res) => {
   const game = new Game({
     title: req.body.title,
