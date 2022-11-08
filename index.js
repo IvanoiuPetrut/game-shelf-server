@@ -15,8 +15,10 @@ app.use(express.json());
 // * Import Routes
 
 const gamesRoute = require("./routes/games");
+const userRoute = require("./routes/user");
 
 app.use("/games", gamesRoute);
+app.use("/user", userRoute);
 
 // * Routes
 
