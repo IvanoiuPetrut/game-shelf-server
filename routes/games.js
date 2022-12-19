@@ -6,10 +6,6 @@ const axios = require("axios");
 const apiUrl = "https://api.rawg.io/api/games";
 
 router.get("/", (req, res) => {
-  res.send("We are on games");
-});
-
-router.get("/popular", (req, res) => {
   let query = req.query;
   let queryString = qs.stringify(query);
   console.log(queryString);
@@ -24,7 +20,7 @@ router.get("/popular", (req, res) => {
     });
 });
 
-router.get("/popular/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   let id = req.params.id;
   axios
     .get(`${apiUrl}/${id}?key=${process.env.RAWG_API_KEY}`)
@@ -36,7 +32,7 @@ router.get("/popular/:id", (req, res) => {
     });
 });
 
-router.get("/popular/:id/screenshots", (req, res) => {
+router.get("/:id/screenshots", (req, res) => {
   let id = req.params.id;
   axios
     .get(`${apiUrl}/${id}/screenshots?key=${process.env.RAWG_API_KEY}`)
@@ -48,7 +44,7 @@ router.get("/popular/:id/screenshots", (req, res) => {
     });
 });
 
-router.get("/popular/:id/movies", (req, res) => {
+router.get("/:id/movies", (req, res) => {
   let id = req.params.id;
   axios
     .get(`${apiUrl}/${id}/movies?key=${process.env.RAWG_API_KEY}`)
@@ -61,7 +57,7 @@ router.get("/popular/:id/movies", (req, res) => {
 });
 
 // get store links
-router.get("/popular/:id/stores", (req, res) => {
+router.get("/:id/stores", (req, res) => {
   let id = req.params.id;
   axios
     .get(`${apiUrl}/${id}/stores?key=${process.env.RAWG_API_KEY}`)
