@@ -16,10 +16,12 @@ app.use(express.json());
 
 const gamesRoute = require("./routes/games");
 const developersRoute = require("./routes/developers");
+const publishersRoute = require("./routes/publishers");
 const userRoute = require("./routes/user");
 
 app.use("/games", gamesRoute);
 app.use("/developers", developersRoute);
+app.use("/publishers", publishersRoute);
 app.use("/user", userRoute);
 
 // * Routes
